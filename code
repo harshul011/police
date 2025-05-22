@@ -1,0 +1,20 @@
+
+import seaborn as sn
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+df=pd.read_csv(r"C:\Users\DELL\Downloads\Police.csv")
+pd.set_option("display.width",None)
+print(df.shape)
+print(df.head())
+df.dropna(axis=1,how ="all",inplace=True)
+print(df.shape)
+print("df info",df.info())
+print("null values total in each colun:",df.isnull().sum())
+speeding_violation=df[df["violation"]=="Speeding"]
+print(speeding_violation["driver_gender"].value_counts())
+print(df["search_conducted"].value_counts())
+df["stop_duration"].value_counts()
+print(df.groupby("violation")["driver_age"].describe())
+sn.boxplot(data=df,x="driver_age",y="violation")
+plt.show()
